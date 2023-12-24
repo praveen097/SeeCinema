@@ -1,0 +1,73 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+{% load static %}
+<title>See Cinema | {% block title %} {{title}} {% endblock %}</title>
+   
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style >
+    .col-centered{
+    float: none;
+    margin: 0 auto;
+    }
+</style>
+    {% block external %}
+    {% endblock %}
+</head>
+<body class="horizontal-nav">
+
+    <header class="navbar navbar-dark bg-dark" role="banner">
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="/">See Cinema | Book Your Cinema</a>
+        </div>
+
+        <ul class="nav navbar-nav pull-right toolbar">
+        </ul>
+    </header>
+
+    <nav>
+    </nav>
+
+<div id="page-container">
+
+  <div id="page-content">
+    <div id="wrap">
+        <div id="page-heading">
+            {% block content-header %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <div class="col-md-6 col-xs-12 col-centered" style="padding-top:100px;">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div> <!-- container -->
+    </div> <!-- #wrap -->
+  </div> <!-- page-content -->
+
+  <footer role="contentinfo">
+        <div class="clearfix">
+            <ul class="list-unstyled list-inline pull-left">
+                <li>&copy; See Cinema 2024</li>
+            </ul>
+            <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+        </div>
+  </footer>
+</div> <!-- page-container -->
+
+<script type='text/javascript' src="{% static "bootstrap/js/bootstrap.min.js" %}"></script> 
+
+
+  {% block externaljs %}
+  {% endblock %}
+</body>
+</html>

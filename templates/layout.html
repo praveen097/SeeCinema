@@ -27,19 +27,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-brand">Your Logo</div>
-        <div class="navbar-nav ml-auto">
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="path/to/profile-image.jpg" alt="Profile" class="profile-image">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                    <span class="dropdown-item">Username</span>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Logout</a>
-                </div>
-            </div>
-        </div>
+        <a href="/accounts/logout/"  class="btn btn-danger">LogOut</a>
     </nav>
 
 <div id="page-container">
@@ -75,9 +63,8 @@
 <script type='text/javascript' src="{% static "fontawesome/js/fontawesome.min.js" %}"></script> 
 
 <script>
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
+    
+    
 </script>
 
   {% block externaljs %}

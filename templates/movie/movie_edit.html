@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h2>Edit Movie: {{ movie.name }}</h2>
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="{{ form.name.id_for_label }}">Name of the Movie:</label>
+    {{ form.name }}
+    <br>
+
+    <label for="{{ form.director.id_for_label }}">Name of the Director:</label>
+    {{ form.director }}
+    <br>
+
+    <label for="{{ form.is_published.id_for_label }}">Publish the Movie:</label>
+    {{ form.is_published }}
+    <br>
+
+    <label for="{{ form.release_date.id_for_label }}">Release Date:</label>
+    {{ form.release_date }}
+    <br>
+
+    <label for="{{ form.total_time.id_for_label }}">Total Time (in minutes):</label>
+    {{ form.total_time_minutes }}
+    <br>
+
+    <label for="{{ form.poster.id_for_label }}">Movie Poster:</label>
+    {{ form.poster }}
+    <br>
+
+    <button type="submit">Save Changes</button>
+  </form>
+  <p><a href="{% url 'movie_detail' pk=movie.pk %}">Cancel</a></p>
+{% endblock %}

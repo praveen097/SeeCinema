@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from movie.views import home_page
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
     path('accounts/', include('allauth.urls')),
     path("movie/", include("movie.urls")),
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

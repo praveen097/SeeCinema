@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h2>{{ movie.name }}</h2>
+  <p>Director: {{ movie.director }}</p>
+  <p>Release Date: {{ movie.release_date }}</p>
+  <p>Total Time: {{ movie.total_time }}</p>
+  {% if movie.poster %}
+    <img src="{{ movie.poster.url }}" alt="{{ movie.name }} Poster" style="max-width: 200px; max-height: 200px;">
+  {% endif %}
+  <!-- Add other movie details as needed -->
+{% endblock %}

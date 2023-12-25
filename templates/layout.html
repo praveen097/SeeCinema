@@ -1,0 +1,86 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+{% load static %}
+<title>See Cinema  {% block title %} {{title}} {% endblock %}</title>
+   
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link type="application/octet-stream" href="{% static "bootstrap/css/bootstrap.min.css.map" %}">
+    <link rel="stylesheet" href="{% static "jquery-ui/jquery-ui.min.css" %}"> 
+    <link rel="stylesheet" href="{% static "fontawesome/css/fontawesome.min.css" %}">
+
+<style >
+    .col-centered{
+    float: none;
+    margin: 0 auto;
+    }
+</style>
+    {% block external %}
+    {% endblock %}
+</head>
+<body class="horizontal-nav">
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="navbar-brand">Your Logo</div>
+        <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="path/to/profile-image.jpg" alt="Profile" class="profile-image">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                    <span class="dropdown-item">Username</span>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div id="page-container">
+
+  <div id="page-content">
+    <div id="wrap">
+        <div id="page-heading">
+            {% block content-header %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <div class="col-md-6 col-xs-12 col-centered" style="padding-top:100px;">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div> <!-- container -->
+    </div> <!-- #wrap -->
+  </div> <!-- page-content -->
+
+  <footer role="contentinfo">
+        <div class="clearfix">
+            <ul class="list-unstyled list-inline pull-left">
+                <li>&copy; See Cinema 2024</li>
+            </ul>
+            <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+        </div>
+  </footer>
+</div> <!-- page-container -->
+
+<script type='text/javascript' src="{% static "bootstrap/js/bootstrap.min.js" %}"></script> 
+<script type='text/javascript' src="{% static "jquery/jquery.min.js" %}"></script> 
+<script type='text/javascript' src="{% static "jquery-ui/jquery-ui.min.js" %}"></script> 
+<script type='text/javascript' src="{% static "fontawesome/js/fontawesome.min.js" %}"></script> 
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+  {% block externaljs %}
+  {% endblock %}
+</body>
+</html>

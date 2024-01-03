@@ -21,5 +21,11 @@ class Theatre(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name='Description')
     directions_link = models.URLField(max_length=512, null=True, blank=True, verbose_name='Directions Link')
 
+    class Meta:
+        verbose_name_plural = 'Theatres'
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return '%s' % self.name
 
 

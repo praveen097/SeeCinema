@@ -7,6 +7,7 @@ urlpatterns = [
     path('create/', movie_create, name='movie_create'),
     path('<int:pk>/edit/', movie_edit, name='movie_edit'),
     path('<int:pk>/delete/', movie_delete, name='movie_delete')
+# http://localhost:8000/accounts/password/change/
 
     # Add other URL patterns as needed
 ]

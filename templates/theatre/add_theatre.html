@@ -1,0 +1,89 @@
+<!-- myapp/templates/add_theatre.html -->
+{% extends 'layout.html' %}  <!-- Include your base template if you have one -->
+
+{% block content %}
+  <div class="container">
+    <h2>Add Theatre</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">Name of the Theatre:</label>
+        {{ form.name }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.owner.id_for_label }}">Name of the Owner:</label>
+        {{ form.owner }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.screens.id_for_label }}">Total Screens:</label>
+        {{ form.screens }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.address.id_for_label }}">Theatre Address:</label>
+        {{ form.address }}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="{{ form.city.id_for_label }}">City:</label>
+          {{ form.city }}
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="{{ form.state.id_for_label }}">State:</label>
+          {{ form.state }}
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="{{ form.zip_code.id_for_label }}">ZIP Code:</label>
+          {{ form.zip_code }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+          {{ form.phone_number }}
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="{{ form.email.id_for_label }}">Email Address:</label>
+          {{ form.email }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="{{ form.opening_time.id_for_label }}">Opening Time:</label>
+          {{ form.opening_time }}
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="{{ form.closing_time.id_for_label }}">Closing Time:</label>
+          {{ form.closing_time }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.logo.id_for_label }}">Theatre Logo:</label>
+        {{ form.logo }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.directions_link.id_for_label }}">Directions Link:</label>
+        {{ form.directions_link }}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Theatre</button>
+    </form>
+  </div>
+{% endblock %}

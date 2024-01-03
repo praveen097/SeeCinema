@@ -24,6 +24,9 @@ urlpatterns = [
     path('', home_page),
     path('accounts/', include('allauth.urls')),
     path("movie/", include("movie.urls")),
+    path("theatre/", include("theatre.urls")),
+    path("screen/", include("screen.urls")),
+    path("show/", include("show.urls")),
 
 ]
 if settings.DEBUG:

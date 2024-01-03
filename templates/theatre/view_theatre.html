@@ -1,0 +1,25 @@
+<!-- myapp/templates/view_theatre.html -->
+{% extends 'layout.html' %}  <!-- Include your layout template if you have one -->
+
+{% block content %}
+  <div class="container">
+    <h2>{{ theatre.name }}</h2>
+
+    <p>
+      Owner: {{ theatre.owner }}<br>
+      Total Screens: {{ theatre.screens }}<br>
+      Address: {{ theatre.address }}, {{ theatre.city }}, {{ theatre.state }} {{ theatre.zip_code }}<br>
+      Phone: {{ theatre.phone_number }}, Email: {{ theatre.email }}<br>
+      Opening Time: {{ theatre.opening_time }} - Closing Time: {{ theatre.closing_time }}<br>
+      Description: {{ theatre.description }}<br>
+      Directions Link: {{ theatre.directions_link }}<br>
+      {% if theatre.logo %}
+        <img src="{{ theatre.logo.url }}" alt="{{ theatre.name }} Logo" style="max-width: 100px; max-height: 100px;">
+      {% endif %}
+    </p>
+
+    <a href="{% url 'edit_theatre' theatre.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'delete_theatre' theatre.id %}" class="btn btn-danger">Delete</a>
+
+  </div>
+{% endblock %}

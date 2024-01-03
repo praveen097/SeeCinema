@@ -2,6 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 def validate_future_date(value):
@@ -29,3 +30,5 @@ class Movie(models.Model):
     def total_time(self):
         # Convert total_time_minutes to a timedelta object representing minutes
         return timedelta(minutes=self.total_time_minutes)
+
+

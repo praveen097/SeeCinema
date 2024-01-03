@@ -19,6 +19,10 @@
     float: none;
     margin: 0 auto;
     }
+    /* Custom CSS for hoverable dropdown */
+    .hoverable-dropdown:hover .dropdown-menu {
+        display: block;
+    }
 </style>
     {% block external %}
     {% endblock %}
@@ -27,7 +31,16 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-brand">Your Logo</div>
-        <a href="/accounts/logout/"  class="btn btn-danger">LogOut</a>
+        <div class="btn-group hoverable-dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="fruitDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Fruit
+            </button>
+            <ul class="dropdown-menu " aria-labelledby="fruitDropdown">
+                <!-- Dropdown items -->
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="/accounts/logout/">Logout</a></li>
+            </ul>
+        </div>
     </nav>
 
 <div id="page-container">

@@ -1,0 +1,34 @@
+<!-- myapp/templates/all_theatres.html -->
+{% extends 'layout.html' %}  <!-- Include your layout template if you have one -->
+
+{% block content %}
+  <div class="container">
+    <h2>All Theatres</h2>
+
+    {% if theatres %}
+      <ul>
+        {% for theatre in theatres %}
+          <li>
+            <strong>{{ theatre.name }}</strong><br>
+            Owner: {{ theatre.owner }}<br>
+            Total Screens: {{ theatre.screens }}<br>
+            Address: {{ theatre.address }}, {{ theatre.city }}, {{ theatre.state }} {{ theatre.zip_code }}<br>
+            Phone: {{ theatre.phone_number }}, Email: {{ theatre.email }}<br>
+            Opening Time: {{ theatre.opening_time }} - Closing Time: {{ theatre.closing_time }}<br>
+            Description: {{ theatre.description }}<br>
+            Directions Link: {{ theatre.directions_link }}<br>
+            {% if theatre.logo %}
+              <img src="{{ theatre.logo.url }}" alt="{{ theatre.name }} Logo" style="max-width: 100px; max-height: 100px;">
+            {% endif %}
+            <br>
+            <a href="{% url 'view_theatre' theatre.id %}" class="btn btn-info">View</a>
+            <a href="{% url 'edit_theatre' theatre.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete_theatre' theatre.id %}" class="btn btn-danger">Delete</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No theatres available.</p>
+    {% endif %}
+  </div>
+{% endblock %}

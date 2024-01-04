@@ -22,8 +22,8 @@ PRICE_CATEGORIES = (
 )
 
 class Screen(models.Model):
-    name = models.CharField(max_length=512, verbose_name = u"Name of the Screen")
     theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE, verbose_name = u"Name of the Theatre")
+    name = models.CharField(max_length=512, verbose_name = u"Name of the Screen")
     status = models.CharField(max_length=512, choices=STATUS, default= 'active', verbose_name = u"Status of the Screen")
     screen_type = models.CharField(max_length=512, choices=SCREEN_TYPE, default='small', verbose_name = u"Type of the Screen")
     capacity = models.PositiveIntegerField(verbose_name=u"Capacity")
@@ -40,17 +40,40 @@ class Screen(models.Model):
     def __str__(self):
         return '%s' % self.name
 
-
-
-
-class Seat(models.Model):
-    screen = models.ForeignKey(Screen, on_delete=models.CASCADE, related_name='seats', verbose_name='Screen')
-    seat_number = models.CharField(max_length=10, verbose_name='Seat Number')
-    seat_type = models.CharField(max_length = 20, verbose_name="Type of Seat")
+class Block(models.Model):
+    screen = models.ForeignKey(Screen, on_delete=models.CASCADE, related_name='blocks', verbose_name='Screen')
+    name = models.CharField(max_length=512, verbose_name="Name of the block")
+    seating_type = models.CharField(max_length=20, choices=SEAT_TYPE, verbose_name="Seating Type")
+    price = models.PositiveIntegerField(default=0, verbose_name="Price of seats in the Block")
+    no_of_rows = models.PositiveIntegerField(default=0, verbose_name="Number of rows in the Block")
+    no_of_columns = models.PositiveIntegerField(default=0, verbose_name="Number of columns in the Block")
 
     class Meta:
-        verbose_name_plural = 'Seats'
+        verbose_name_plural = 'Screens | Blocks'
 
     def __str__(self):
         return '%s' % self.name
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        # Delete existing seats
+        self.seats.all().delete()
+
+        # Create seats based on the updated number of rows and columns
+        for row in range(1, self.no_of_rows + 1):
+            row_label = chr(65 + row - 1)
+            for col in range(1, self.no_of_columns + 1):
+                seat_number = f'{row_label}-{col}'
+                Seat.objects.create(block=self, seat_number=seat_number)
+
+class Seat(models.Model):
+    block = models.ForeignKey(Block, on_delete=models.CASCADE, related_name='seats', verbose_name='Block')
+    seat_number = models.CharField(max_length=10, verbose_name='Seat Number')
+
+    class Meta:
+        verbose_name_plural = 'Screens | Seats'
+        unique_together = ('block', 'seat_number')  # Ensure uniqueness within each block
+
+    def __str__(self):
+        return '%s' % self.seat_number

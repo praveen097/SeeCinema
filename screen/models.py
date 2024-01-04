@@ -65,11 +65,12 @@ class Block(models.Model):
             row_label = chr(65 + row - 1)
             for col in range(1, self.no_of_columns + 1):
                 seat_number = f'{row_label}-{col}'
-                Seat.objects.create(block=self, seat_number=seat_number)
+                Seat.objects.create(block=self, seat_number=seat_number, price=self.price)
 
 class Seat(models.Model):
     block = models.ForeignKey(Block, on_delete=models.CASCADE, related_name='seats', verbose_name='Block')
     seat_number = models.CharField(max_length=10, verbose_name='Seat Number')
+    price = models.PositiveIntegerField(default=0, verbose_name="Price of the Seat")
 
     class Meta:
         verbose_name_plural = 'Screens | Seats'
